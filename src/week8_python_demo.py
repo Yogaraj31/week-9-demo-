@@ -46,7 +46,7 @@ education_mapping = {
 
 df_app = (df_app
     .assign(
-        EDUCATION_LEVEL_2 = lambda x: x['NAME_EDUCATION_TYPE']
+        EDUCATION_LEVEL = lambda x: x['NAME_EDUCATION_TYPE']
             .map(education_mapping)
             .fillna('Lower Education') 
     )
@@ -68,22 +68,19 @@ df_prev.sample(10)
 # %%
 # summarize previous application data to get count of recent applications per customer
 df_prev_summary = (df_prev
-                   .query('DAYS_DECISION <= -180')
+                   .query('DAYS_DECISION >= -180')
                    .groupby('SK_ID_CURR')
                    .agg(
                        prev_app_count = ('SK_ID_PREV', 'size')
                    )
                   )
 
-df_prev_summary.plot.hist(column='prev_app_count', bins=30)
-
-
 # merge previous application summary with application data and fill missing values with 0
 df_app = (df_app
     .merge(df_prev_summary, on='SK_ID_CURR', how='left')
-    .fillna(0)
+    .assign(prev_app_count = lambda x: x['prev_app_count'].fillna(0))
 )
-
+    
 # %%
 # clean up the employee anomaly in DAYS_EMPLOYED by replacing it with NaN
 df_app = (df_app
@@ -162,6 +159,9 @@ df_app = (df_app
 df_app['AGE_GENDER_SEGMENT2'].value_counts()
 
 # %%
+# df_app.drop(columns=['AGE'])
+
+# %%
 #save the final table
-df_app.to_csv('data\\processed_application_data_exercise.csv', index=False)
+df_app.to_csv(DATA_DIR / 'processed_application_data_exercise.csv', index=False)
 

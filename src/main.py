@@ -14,13 +14,13 @@ from config import CONFIG
 from stage_1_load_data import load_data
 from stage_2_clean_transform import clean_application_data, transform_application_data, transform_post_merge
 from stage_3_aggregate import aggregate_bureau, aggregate_previous_applications, create_cubes
-from stage_4_test import test_pipeline_data_quality
+from stage_4_validate import test_pipeline_data_quality
 
 repo_root = Path(CONFIG['paths']['repo_root'])     
 logger.add(Path(repo_root) / CONFIG['paths']['log_dir'] / CONFIG['paths']['log_file'], rotation="10 MB", retention="10 days")
     
 def run_pipeline():
-    """Run the entire data pipeline to produce the final dataset using chaining."""
+    """Run the entire data pipeline to produce the final data cube using chaining."""
     try:
 
         logger.info(f"Repository root resolved to: {repo_root}")
@@ -46,7 +46,7 @@ def run_pipeline():
             .pipe(transform_post_merge, config=CONFIG)
         )
         
-        # Run data quality testing
+        # Run data quality validation
         test_pipeline_data_quality(final_df, CONFIG)
         
         # Save the final table

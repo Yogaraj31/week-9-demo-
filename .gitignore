@@ -24,7 +24,8 @@ __pycache__/
 
 # --- Data (Privacy & Size) ---
 # We ignore raw data to stay within GitHub limits and maintain privacy
-data/
+data/*
+!data/processed_data_cube.csv
 *.xlsx
 *.xls
 *.json

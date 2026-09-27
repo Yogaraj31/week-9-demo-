@@ -2,9 +2,13 @@ from pathlib import Path
 import numpy as np
 
 # set relative path to data directory
-DATA_DIR = Path(__file__).resolve().parent.parent / 'data'
+DATA_DIR = Path(__file__).resolve().parent.parent.parent / 'data'
+
+LOG_DIR = Path(__file__).resolve().parent.parent.parent / 'logs'
 
 DATABASE_FILE = DATA_DIR / "home_credit.db"
+
+LOG_FILE = LOG_DIR / "pipeline.log"
 
 # clean up the employee anomaly in DAYS_EMPLOYED by replacing it with NaN
 DAYS_EMPLOYED_NA_VALUES = 365243

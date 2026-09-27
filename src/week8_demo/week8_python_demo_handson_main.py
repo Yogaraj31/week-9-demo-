@@ -1,9 +1,9 @@
 
 
-from week8_python_demo_handson_config import DATA_DIR, DATABASE_FILE, DAYS_EMPLOYED_NA_VALUES, GENDER_MAPPING, AGE_BIN, AGE_BIN_LABEL, EDUCATION_MAPPING
-from week8_python_demo_handson_stage_1_load_data import load_data
-from week8_python_demo_handson_stage_2_clean_transform import clean_days_employed, clean_gender_code, set_age_bin, set_education_bin, set_age_gender_bin
-from week8_python_demo_handson_stage_3_aggregate import join_previous_application, join_bureau
+from week8_demo.week8_python_demo_handson_config import DATA_DIR, DATABASE_FILE, DAYS_EMPLOYED_NA_VALUES, GENDER_MAPPING, AGE_BIN, AGE_BIN_LABEL, EDUCATION_MAPPING
+from week8_demo.week8_python_demo_handson_stage_1_load_data import load_data
+from week8_demo.week8_python_demo_handson_stage_2_clean_transform import clean_days_employed, clean_gender_code, set_age_bin, set_education_bin, set_age_gender_bin
+from week8_demo.week8_python_demo_handson_stage_3_aggregate import join_previous_application, join_bureau
 
 
 def main():

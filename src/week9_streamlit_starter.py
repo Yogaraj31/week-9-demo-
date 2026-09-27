@@ -21,7 +21,7 @@ import streamlit as st
 
 st.set_page_config(page_title="Home Credit Dashboard", layout="wide")
 
-DATA_PATH = Path(__file__).resolve().parent.parent.parent / "data"/  "processed_data_cube.csv"
+DATA_PATH = Path(__file__).resolve().parent.parent / "data"/  "processed_data_cube.csv"
 
 
 @st.cache_data

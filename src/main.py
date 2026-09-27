@@ -14,7 +14,7 @@ from config import CONFIG
 from stage_1_load_data import load_data
 from stage_2_clean_transform import clean_application_data, transform_application_data, transform_post_merge
 from stage_3_aggregate import aggregate_bureau, aggregate_previous_applications, create_cubes
-from stage_4_validate import test_pipeline_data_quality
+from stage_4_validate import validate_final_table
 
 repo_root = Path(CONFIG['paths']['repo_root'])     
 logger.add(Path(repo_root) / CONFIG['paths']['log_dir'] / CONFIG['paths']['log_file'], rotation="10 MB", retention="10 days")
@@ -47,7 +47,7 @@ def run_pipeline():
         )
         
         # Run data quality validation
-        test_pipeline_data_quality(final_df, CONFIG)
+        validate_final_table(final_df, CONFIG)
         
         # Save the final table
         output_dir = Path(repo_root) / CONFIG['paths']['output_dir']

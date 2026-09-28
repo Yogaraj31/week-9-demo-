@@ -10,7 +10,7 @@ This is intentionally minimal. In class we will build it up together:
     - add a drilldown chart with a dimension/metric picker
     - publish it to Streamlit Community Cloud
 
-Data source: processed_data_cube.csv, produced by running main_pipeline.py
+Data source: processed_data_cube.csv, produced by running main.py
 (the cube is created by create_cubes() in stage_3_aggregate.py).
 """
 
@@ -40,8 +40,15 @@ def main():
 
     st.subheader("Applications by contract type")
 
-    chart_df = df.groupby("NAME_CONTRACT_TYPE")["total_applications"].sum().reset_index()
-    fig = px.bar(chart_df, x="NAME_CONTRACT_TYPE", y="total_applications")
+    chart_df = (df
+                .groupby("NAME_CONTRACT_TYPE")
+                .agg({"total_applications": "sum"})
+                .reset_index()
+                )
+
+    fig = px.bar(chart_df, 
+                 x="NAME_CONTRACT_TYPE",
+                 y="total_applications")
 
     st.plotly_chart(fig, width= 'stretch')
 

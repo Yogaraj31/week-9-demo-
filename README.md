@@ -13,7 +13,7 @@ Students can use this repo to clone a starter Streamlit application, open it in 
 3. In the terminal, clone the repo into that folder and change into it:
 
 ```powershell
-git clone https://github.com/twchyin/streamlit-demo.git .
+git clone https://github.com/ntu-mara-db-prog/week9_streamlit_demo.git .
 ```
 
 4. Sync the environment with `uv`:
@@ -31,3 +31,5 @@ uv run streamlit run src/week9_streamlit_starter.py
 This should show the same output as the deployed app at:
 
 https://st-dashboard-starter.streamlit.app/
+
+* Please "wake" it up if if it is sleeping.
